@@ -42,6 +42,22 @@ h1{margin:0;font-size:clamp(22px,3.6vh,30px)}h2{margin:0 0 10px;font-size:24px}
 .wl{position:absolute;left:0;top:0;font-size:26px;font-weight:900;color:#fff;-webkit-text-stroke:6px #7a3b12;paint-order:stroke fill;opacity:0;pointer-events:none;white-space:nowrap;transition:transform .5s,opacity .3s}
 .cnt{font-size:32px;font-weight:700;min-height:46px}.cnt b{color:var(--o);font-size:44px}
 .pop{animation:pp .5s}
+.rb{position:relative;width:540px;margin:0 auto}
+.ob{height:44px;border-radius:10px;display:flex;align-items:center;padding-left:10px;box-sizing:border-box;font-size:26px;white-space:nowrap;overflow:hidden;margin-bottom:8px;color:#5b4632}
+.rl{position:relative;height:66px;width:540px;background:var(--y);border-radius:6px}
+.tk{position:absolute;top:0;width:2px;height:16px;background:var(--ink);margin-left:-1px}.tk.mid{height:26px}.tk.big{height:36px}
+.nm{position:absolute;top:38px;transform:translateX(-50%);font-size:20px;font-weight:700;font-style:normal}
+.eg{position:absolute;top:0;bottom:0;width:2px;background:#e0507a;opacity:.55;margin-left:-1px}
+.bk{position:relative;height:40px;margin:8px auto 0;width:540px}
+.bl{position:absolute;top:0;height:36px;background:var(--g);border-radius:6px;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;animation:pp .35s}
+.rm{position:absolute;top:0;height:118px;outline:3px dashed var(--o);border-radius:4px}
+.zm{width:540px;margin:14px auto 0;visibility:hidden}
+.zh{display:flex;justify-content:space-between;font-weight:700;font-size:20px;margin-bottom:4px}
+.zb{position:relative;height:64px;border:3px solid var(--o);border-radius:8px;box-sizing:border-box;overflow:hidden}
+.zf{position:absolute;left:0;top:0;bottom:0}
+.zl{position:absolute;top:0;width:3px;height:0;background:var(--ink);margin-left:-1.5px;transition:height .25s}
+.zt{position:absolute;top:0;bottom:0;width:10%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:#fff;-webkit-text-stroke:4px #7a3b12;paint-order:stroke fill;animation:pp .3s}
+
 .tst{position:fixed;left:50%;bottom:8vh;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:14px 28px;border-radius:999px;font-size:22px;font-weight:700;z-index:60}
 .qr{width:330px;display:flex;flex-direction:column;gap:10px}
 .al{font-size:18px}.abox{height:68px;border:3px solid var(--o);border-radius:16px;font-size:46px;font-weight:700;text-align:center;line-height:68px;background:var(--card)}
@@ -82,7 +98,7 @@ function stamp(t,ok){const d=$("div","st "+(ok?"ok":"ng"),t);document.body.appen
 function whole(S,l){const w=$("div","it"),m=new Image();m.src=IMG;m.draggable=false;m.style.cssText=`width:${S}px;height:${S}px`;w.append(m,$("div","lb",l==null?"1":l));return w}
 function piece(S,i,l){const w=$("div","it"),p=$("div","pc"),m=new Image();p.style.cssText=`width:${S*.309}px;height:${S/2}px`;m.src=IMG;m.draggable=false;m.style.cssText=`width:${S}px;height:${S}px;left:${-S*.3455}px;transform:rotate(${-(i*36+18)}deg)`;p.append(m);w.append(p,$("div","lb",l));return w}
 function home(){go(()=>{const c=$("div","col");c.append($("div","top","<h1>🍕 しょうすうの まど</h1>"));const h=$("div","home");
-[["🍕","① しょうすうの イメージ","ピザを ならべて 0.1を かんがえよう",img1],["✍️","② ひっさんの たてかた","小数点を そろえて おいてみよう",()=>hissan({calc:0,s:{...DEF}},0)],["🔢","③ けいさん","たしざん ひきざんに ちょうせん",settings]].forEach(([i,t,s,f])=>{const b=$("button","hb",`<i>${i}</i>${t}<small>${s}</small>`);b.onclick=f;h.append(b)});c.append(h);app.append(c)})}
+[["🍕","① しょうすうの イメージ","ピザや ものさしで 0.1を かんがえよう",imgMenu],["✍️","② ひっさんの たてかた","小数点を そろえて おいてみよう",()=>hissan({calc:0,s:{...DEF}},0)],["🔢","③ けいさん","たしざん ひきざんに ちょうせん",settings]].forEach(([i,t,s,f])=>{const b=$("button","hb",`<i>${i}</i>${t}<small>${s}</small>`);b.onclick=f;h.append(b)});c.append(h);app.append(c)})}
 function lift(n,f,e,box,done){const r=f.getBoundingClientRect();n.style.cssText=`position:fixed;left:${r.left}px;top:${r.top}px;z-index:9`;document.body.append(n);dragIt(n,e,box,done)}
 function dragIt(n,e,box,done){const r=n.getBoundingClientRect(),ox=e.clientX-r.left,oy=e.clientY-r.top;
 const mv=v=>{n.style.left=v.clientX-ox+"px";n.style.top=v.clientY-oy+"px"};
@@ -91,6 +107,32 @@ const b=box.getBoundingClientRect(),q=n.getBoundingClientRect(),cx=q.left+q.widt
 if(cx>b.left&&cx<b.right&&cy>b.top&&cy<b.bottom){n.style.position="absolute";n.style.zIndex=1;n.style.left=Math.max(0,Math.min(b.width-q.width-8,q.left-b.left-box.clientLeft))+"px";n.style.top=Math.max(0,Math.min(b.height-q.height-8,q.top-b.top-box.clientTop))+"px";box.append(n);
 setup(n,box,done)}else n.remove();done()};
 addEventListener("pointermove",mv);addEventListener("pointerup",up);addEventListener("pointercancel",up);mv(e)}
+const K=90,OBJ=[["🖍️","クレヨン","#f4a261"],["✏️","えんぴつ","#e9c46a"],["📎","クリップ","#8ecae6"],["🧽","けしごむ","#f28ab2"],["🪥","はぶらし","#90be6d"]];
+const pickT=()=>{let t;do t=11+rnd(49);while(t%10==0);return t};
+function rulerBox(t,fine,o){const b=$("div","rb"),ob=$("div","ob",o[0]),r=$("div","rl");ob.style.width=t*K/10+"px";ob.style.background=o[2];let h="";
+for(let i=0;i<=60;i++){const x=i*K/10;if(i%10==0)h+=`<i class="tk big" style="left:${x}px"></i><i class="nm" style="left:${x}px">${i/10}</i>`;else if(fine)h+=`<i class="tk${i%5==0?" mid":""}" style="left:${x}px"></i>`}
+r.innerHTML=h;b.append(ob,r);if(fine){const e=$("div","eg");e.style.left=t*K/10+"px";b.append(e)}return b}
+function len1(){go(()=>{const t=pickT(),o=OBJ[rnd(OBJ.length)],k=Math.floor(t/10),r=t%10,c=$("div","col");
+const T=(f,ms)=>setTimeout(()=>{if(c.isConnected)f()},ms);c.append(top("① ながさで イメージ(cm)",imgMenu));
+const L=$("div","card ql"),cap=$("h2","",o[1]+"の ながさは なんcmかな?"),rb=rulerBox(t,false,o),bk=$("div","bk"),zm=$("div","zm"),cnt=$("div","cnt"),bs=$("div","srow");
+zm.innerHTML=`<div class="zh"><span>${k}cm</span><span>${k+1}cm</span></div>`;const zb=$("div","zb"),zf=$("div","zf"),zls=[];zf.style.cssText=`width:${r*10}%;background:${o[2]}`;zb.append(zf);for(let i=1;i<10;i++){const l=$("div","zl");l.style.left=i*10+"%";zb.append(l);zls.push(l)}zm.append(zb);
+const rm=$("div","rm");rm.style.cssText=`left:${k*K}px;width:${K}px;display:none`;rb.append(rm);
+const b1=$("button","btn w","べつの ものでも みる"),b2=$("button","btn s","もんだい");b1.onclick=len1;b2.onclick=lenQ;bs.append(b1,b2);bs.style.visibility="hidden";bs.style.justifyContent="center";bs.style.marginTop="8px";
+L.append(cap,rb,bk,zm,cnt,bs);c.append(L);app.append(c);
+T(()=>{cap.textContent="1cmの ブロックを ならべよう";for(let i=0;i<k;i++)T(()=>{const b=$("div","bl","1cm");b.style.cssText=`left:${i*K}px;width:${K-4}px`;bk.append(b);cnt.innerHTML=`1cmが <b>${i+1}</b>こ`},i*600)},1500);
+const t2=1500+k*600+900;
+T(()=>{cap.textContent="のこりの ところを ズームするよ";rm.style.display="block";zm.style.visibility="visible";const a=rb.querySelector(".rl").getBoundingClientRect(),z=zm.getBoundingClientRect();zm.style.transition="none";zm.style.transform=`translate(${a.left+(k+.5)*K-z.left-z.width/2}px,${a.top+a.height/2-z.top-z.height/2}px) scale(${K/z.width},.25)`;void zm.offsetWidth;zm.style.transition="transform 1s cubic-bezier(.2,.8,.2,1)";zm.style.transform="none"},t2);
+T(()=>{cap.textContent="1cmを 10こに わける せんを ひくよ";zls.forEach((l,i)=>T(()=>l.style.height="100%",i*160))},t2+1300);
+const t3=t2+3200;
+T(()=>{cap.innerHTML="1cmを 10こに わけた 1こぶんが <b>0.1cm</b>";for(let i=0;i<r;i++)T(()=>{const z=$("div","zt","0.1");z.style.left=i*10+"%";zb.append(z);cnt.innerHTML=`1cmが ${k}こ と 0.1cmが <b>${i+1}</b>こ`},i*400+300)},t3);
+T(()=>{cap.innerHTML=`ながさは <b>${k}.${r}cm</b> だよ`;cnt.innerHTML=`1cmが ${k}こ と 0.1cmが ${r}こ → <b>${k}.${r}cm</b>`;bs.style.visibility="visible"},t3+r*400+1300)})}
+function lenQ(){go(()=>{const t=pickT(),o=OBJ[rnd(OBJ.length)];let v="";const c=$("div","col");c.append(top("① ながさの もんだい",len1));
+const r=$("div","row"),L=$("div","card ql"),Rp=$("div","card qr"),ab=$("div","abox","　"),nx=$("button","btn s ent","つぎの もんだい");nx.onclick=lenQ;
+L.append($("h2","",o[1]+"の ながさは なんcm?"),rulerBox(t,true,o),$("p","tip","ちいさい めもり1こぶんが 0.1cm だよ。<br>ピンクの せんの ところを よんでね"));
+const k=keypad(()=>v,x=>{v=x;ab.textContent=v||"　"},()=>{const n=Math.round(parseFloat(v)*10);if(isNaN(n))return;if(n===t){stamp("○",1);k.replaceWith(nx)}else{stamp("✕",0);v="";ab.textContent="　"}});
+Rp.append($("div","al","こたえ(cm)"),ab,k);r.append(L,Rp);c.append(r);app.append(c)})}
+function imgMenu(){go(()=>{const c=$("div","col");c.append(top("① しょうすうの イメージ"));const h=$("div","home");
+[["🍕","ピザで みよう","1こを 10こに きって 0.1を みつけよう",img1],["📏","ながさ(cm)で みよう","ものさしで 0.1cmを みつけよう",len1]].forEach(([i,t,s,f])=>{const b=$("button","hb",`<i>${i}</i>${t}<small>${s}</small>`);b.onclick=f;h.append(b)});c.append(h);app.append(c)})}
 function toast(m){const d=$("div","tst",m);document.body.append(d);setTimeout(()=>d.remove(),2200)}
 function setup(n,box,done){n.onpointerdown=ev=>{ev.preventDefault();const t=n.getBoundingClientRect();n.style.position="fixed";n.style.zIndex=9;n.style.left=t.left+"px";n.style.top=t.top+"px";dragIt(n,ev,box,done)}}
 function cutDemo(box){const w0=[...box.children].find(x=>x.dataset.v==="10");if(!w0){toast("しかくの なかに ホールの ピザを おいてね");return}
@@ -119,7 +161,7 @@ T(()=>{cap.textContent="0.1が あつまると…";for(let i=0;i<10;i++){set(i,S
 T(()=>{for(let i=0;i<10;i++)T(()=>{set(i,0);lb[i].style.opacity=0;const n=i+1;cnt.innerHTML=n<10?`0.1が ${n}こで <b>${fmt(n)}</b>`:`0.1が 10こで <b>1</b>`},i*450)},6700);
 T(()=>{cap.innerHTML="くっついて <b>1</b> に なったよ!";wd.forEach(p=>p.style.opacity=0);wi.style.opacity=1;wi.classList.add("pop");
 const one=$("div","wl","1");one.style.fontSize="96px";one.style.transform=`translate(${C}px,${C}px) translate(-50%,-50%)`;stg.append(one);T(()=>one.style.opacity=1,60);bs.style.visibility="visible"},11400)}
-function img1(){go(()=>{const c=$("div","col");c.append(top("① しょうすうの イメージ"));const r=$("div","row"),sd=$("div","side card"),box=$("div","box"),tot=$("div","tot"),hn=$("div","bh","ここに ピザを ドラッグ");box.append(hn,tot);
+function img1(){go(()=>{const c=$("div","col");c.append(top("① ピザで イメージ",imgMenu));const r=$("div","row"),sd=$("div","side card"),box=$("div","box"),tot=$("div","tot"),hn=$("div","bh","ここに ピザを ドラッグ");box.append(hn,tot);
 let mg=0;const merge=()=>{const ps=[...box.children].filter(x=>x.dataset.v==="1"&&x.style.position!=="fixed");if(ps.length<10||mg)return;mg=1;const s=ps.slice(0,10);let cx=0,cy=0;s.forEach(p=>{cx+=p.offsetLeft+p.offsetWidth/2;cy+=p.offsetTop+p.offsetHeight/2});cx/=10;cy/=10;
 s.forEach(p=>{p.style.pointerEvents="none";p.style.transition="left .6s,top .6s,opacity .6s,transform .6s";p.style.left=cx-p.offsetWidth/2+"px";p.style.top=cy-p.offsetHeight/2+"px";p.style.opacity=.2;p.style.transform="scale(.7)"});
 setTimeout(()=>{s.forEach(p=>p.remove());const w=whole(130);w.dataset.v=10;w.style.position="absolute";w.style.left=Math.max(0,cx-65)+"px";w.style.top=Math.max(0,cy-65)+"px";w.classList.add("pop");setup(w,box,upd);box.append(w);mg=0;upd();stamp("1",1)},700)};
